@@ -51,8 +51,8 @@
     │       └── tcga_gam_create.ipynb
     └── README.md
     ```
-- The analysis folder consists of scripts (jupyter R notebook and .R ) files related to differnt analysis (catalogue, normal mutation, primary vs metastasis etc)
-- The data processing folder consists of scripts (jupyter notebooks) to process the data to generate the `SelectSim` run objects.
+- The analysis folder consists of scripts (jupyter R-notebooks and .R script) files related to different analysis (catalogue, normal mutation, primary vs metastasis etc.)
+- The data processing folder consists of scripts (jupyter R-notebooks) to process the data to generate the `SelectSim` algorithm input run objects.
 
 ## Data Availablity
 
@@ -64,7 +64,5 @@
 
 ## Who do I talk to?
 
-- For any bugs or feature support in using SelectSim, please use the
-  [issue tracker](https://github.com/CSOgroup/SelectSim_analysis/issues).
-
+- For any bugs or feature support in using SelectSim, please use the [issue tracker](https://github.com/CSOgroup/SelectSim_analysis/issues).
 - For any other question related to SelectSim, please contact Prof Giovanni Ciriello (<giovanni.ciriello@unil.ch>) or Arvind Iyer (<arvind.iyer@unil.ch>).
