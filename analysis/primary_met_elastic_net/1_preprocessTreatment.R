@@ -38,3 +38,5 @@ for (iter in 1:length(drug_files)) {
 
 # Save drug data
 save(drug_data, file="../../data/raw/selectsim_analysis/analysis_data/primary_met_elastic_net/drug_data.RData")
+
+
