@@ -3,12 +3,13 @@ library(glmnet)
 
 ENanalysis=function(y,X,n.rep=10,type_regression){
   
-  X=as.matrix(X)
+  #X=as.matrix(X)
   X=X[,which(colSums(X)>=min(nrow(X)*0.002,5))]    
   
   # Run EN
   ENCoeff=list()
   bestalphavector=c()
+  mcfadden_r2=c()
   
   for (i in 1:n.rep){
     print(i)
@@ -31,6 +32,10 @@ ENanalysis=function(y,X,n.rep=10,type_regression){
     fit=glmnet(X,y,alpha=bestalpha,family=type_regression)
     coefficients=coef(fit,s=bestlam)[-1,]
     ENCoeff[[i]]=coefficients
+    
+    # Add quality of prediction
+    mcfadden_r2[i] <- fit$dev.ratio[which(abs(fit$lambda-bestlam)<1e-8)]
+    
   }
   
   coeff.matrix=matrix(NA,ncol=n.rep,nrow = length(coefficients)); colnames(coeff.matrix)=paste0("rep",1:n.rep); rownames(coeff.matrix)=names(coefficients)
@@ -49,8 +54,8 @@ ENanalysis=function(y,X,n.rep=10,type_regression){
     coeff.summary[i,"times selected"]=length(which((coeff.matrix[i,]!=0)))
   }
   
-  results=list(data.frame(coeff.matrix),coeff.summary,bestalphavector)
-  names(results)=c("coeff.matrix","summary","alpha")
+  results=list(data.frame(coeff.matrix),coeff.summary,bestalphavector,mcfadden_r2)
+  names(results)=c("coeff.matrix","summary","alpha","mcfadden_r2")
   
   return(results)
 }
